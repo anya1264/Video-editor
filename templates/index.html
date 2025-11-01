@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>MP3 + Immagine → MP4</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Converti MP3 + Immagine → MP4</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash">{{ messages[0] }}</div>
+    {% endif %}
+  {% endwith %}
+  <form method="post" action="/convert" enctype="multipart/form-data">
+    <label>Immagine (png/jpg/webp): <input type="file" name="image" accept="image/*" required></label>
+    <label>Audio (mp3/wav/m4a/ogg): <input type="file" name="audio" accept="audio/*" required></label>
+    <label>Durata massima opzionale (secondi): <input type="number" name="max_seconds" min="1" placeholder="lascia vuoto per usare durata audio"></label>
+    <button type="submit">Genera MP4</button>
+  </form>
+  <p class="note">Il file risultante verrà scaricato automaticamente.</p>
+</body>
+</html>
